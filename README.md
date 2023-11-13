@@ -1,10 +1,11 @@
-# Cache Cleaner Script
+# Clear Folders For Multiple Users
+## Cache Cleaner Script
 
 This PowerShell script is designed to clear various cache folders on Windows, making it particularly useful for educational institutions such as universities and schools that manage Windows environments with domain user profiles.
 
 ## Usage
 
-1. **Download Script:** Download the `ClearUpFoldersForMultipleUsers.ps1` script from this repository.
+1. **Download Script:** Download the `ClearFoldersForMultipleUsers.ps1` script from this repository.
 
 2. **Run Script:**
 
@@ -13,7 +14,7 @@ This PowerShell script is designed to clear various cache folders on Windows, ma
    - Run the following command to execute the script:
 
      ```powershell
-     .\ClearUpFoldersForMultipleUsers.ps1 -ProfileLocation <ProfilePath>
+     .\ClearFoldersForMultipleUsers.ps1 -ProfileLocation <ProfilePath>
      ```
 
      Replace `<ProfilePath>` with the path to the user profile. If not provided, the script uses the current user's profile.
