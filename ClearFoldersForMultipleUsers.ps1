@@ -50,7 +50,7 @@ function Clear-UserProfileCache {
         foreach ($path in $cachePaths) {
             $fullPath = Join-Path -Path $profilePath -ChildPath "$user\$path"
 
-            if (Test-Path -Path $fullPath -eq $true) {
+            if (Test-Path -Path $fullPath) {
                 Get-ChildItem -Path $fullPath -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
             }
         }
@@ -77,11 +77,10 @@ Clear-UserProfileCache -profilePath $profilePath
 $before = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$($profilePath.Substring(0,2))'" | Select-Object -ExpandProperty FreeSpace
 $after = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$($profilePath.Substring(0,2))'" | Select-Object -ExpandProperty FreeSpace
 
-Write-Output "".PadLeft(80, '-')
-Write-Output "Before    : $((($before / 1GB).ToString('0.00')) GB)"
-Write-Output "After     : $((($after / 1GB).ToString('0.00')) GB)"
-Write-Output "Difference: $((($after - $before) / 1MB).ToString('0.00')) MB"
-Write-Output "".PadLeft(80, '-')
+Write-Output ("Before    : {0:F2} GB" -f ($before / 1GB))
+Write-Output ("After     : {0:F2} GB" -f ($after / 1GB))
+Write-Output ("Difference: {0:F2} MB" -f (($after - $before) / 1MB))
+
 
 # Revert execution policy back to the original state
 Set-ExecutionPolicy -ExecutionPolicy $currentExecutionPolicy -Scope Process -Force
