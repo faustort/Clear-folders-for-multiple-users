@@ -10,11 +10,10 @@ This PowerShell script is designed to clear various cache folders on Windows, ma
 2. **Run Script:**
 
    - Open PowerShell as Administrator.
-   - Navigate to the directory where the script is located.
    - Run the following command to execute the script:
 
      ```powershell
-     .\ClearFoldersForMultipleUsers.ps1 -ProfileLocation <ProfilePath>
+     .\ClearFoldersForMultipleUsers.ps1
      ```
 
      Replace `<ProfilePath>` with the path to the user profile. If not provided, the script uses the current user's profile.
