@@ -64,6 +64,9 @@ param (
     [string]$ProfileLocation
 )
 
+# get before
+$before = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$($profilePath.Substring(0,2))'" | Select-Object -ExpandProperty FreeSpace
+
 Clear-Host
 Write-Host 'Searching for user profiles ... ' -NoNewline
 
@@ -74,7 +77,6 @@ $profilePath = if ($ProfileLocation -ne $null) { $ProfileLocation } else { (Spli
 Clear-UserProfileCache -profilePath $profilePath
 
 # Display disk space difference
-$before = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$($profilePath.Substring(0,2))'" | Select-Object -ExpandProperty FreeSpace
 $after = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$($profilePath.Substring(0,2))'" | Select-Object -ExpandProperty FreeSpace
 
 Write-Output ("Before    : {0:F2} GB" -f ($before / 1GB))
